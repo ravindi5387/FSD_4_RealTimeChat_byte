@@ -44,63 +44,11 @@ Database: PostgreSQL / Neon
 
 Tools: Git, GitHub, Postman, Visual Studio Code, Browser DevTools
 
-Architecture
+Architecture & Project Structure
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/cf38a518-19a6-4725-a4b4-f5dd0fb3b150" />
 
-┌─────────────────────────────────────┐
-│        React + TypeScript + Vite    │
-│             PulseChat UI            │
-└──────────────────┬──────────────────┘
-                   │
-          HTTP REST API + Socket.IO
-                   │
-                   ▼
-┌─────────────────────────────────────┐
-│       Node.js + Express + TS        │
-│  JWT Auth · Zod Validation · Socket │
-│              .IO Server              │
-└──────────────────┬──────────────────┘
-                   │
-                   ▼
-┌─────────────────────────────────────┐
-│           PostgreSQL / Neon         │
-│  users · chat_rooms · chat_messages│
-└─────────────────────────────────────┘
 
-Project Structure
-
-FSD_4_RealTimeChat_byte/
-├── backend/
-│   ├── src/
-│   │   ├── config/
-│   │   ├── controllers/
-│   │   ├── middleware/
-│   │   ├── routes/
-│   │   ├── sockets/
-│   │   ├── types/
-│   │   ├── utils/
-│   │   ├── app.ts
-│   │   └── server.ts
-│   ├── .env.example
-│   └── package.json
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── services/
-│   │   ├── types/
-│   │   ├── App.tsx
-│   │   └── styles.css
-│   ├── .env.example
-│   └── package.json
-├── database/
-│   └── schema.sql
-├── docs/
-│   └── TEST_PLAN.md
-├── screenshots/
-├── .gitignore
-└── README.md
-
-Database
+ Database
 
 The PostgreSQL schema contains three core tables:
 

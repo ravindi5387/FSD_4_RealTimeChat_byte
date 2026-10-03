@@ -45,10 +45,10 @@ Database: PostgreSQL / Neon
 Tools: Git, GitHub, Postman, Visual Studio Code, Browser DevTools
 
 Architecture & Project Structure
+
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/cf38a518-19a6-4725-a4b4-f5dd0fb3b150" />
 
-
- Database
+Database
 
 The PostgreSQL schema contains three core tables:
 
@@ -117,8 +117,8 @@ http://localhost:5000/api/health
 Expected response:
 
 {
-  "status": "ok",
-  "service": "realtime-chat-api"
+"status": "ok",
+"service": "realtime-chat-api"
 }
 
 4. Configure the frontend
@@ -199,16 +199,16 @@ Retrieve room history
 Register
 
 {
-  "name": "Ravindi Test",
-  "email": "ravindi@example.com",
-  "password": "StrongPass123"
+"name": "Ravindi Test",
+"email": "ravindi@example.com",
+"password": "StrongPass123"
 }
 
 Login
 
 {
-  "email": "ravindi@example.com",
-  "password": "StrongPass123"
+"email": "ravindi@example.com",
+"password": "StrongPass123"
 }
 
 Socket.IO Events
@@ -288,17 +288,17 @@ Removes typing activity
 Authentication & Real-Time Flow
 
 Register → bcrypt hash → PostgreSQL
-        ↓
+↓
 Login → JWT issued
-        ↓
+↓
 Authenticated Socket.IO connection
-        ↓
+↓
 Join room
-        ↓
+↓
 Send message
-        ↓
+↓
 Validate → Save to PostgreSQL → Broadcast
-        ↓
+↓
 Connected users receive the message instantly
 
 Security
@@ -391,6 +391,10 @@ The application has been tested for:
 
 ![Registration After Sign In](<screenshots/register after sign in.png>)
 
+### 11. Live Two-User Real-Time Chat
+
+![Live Two-User Chat](screenshots/08-live-two-user-chat.png)
+
 Deployment
 
 For production deployment, configure the backend with the production PostgreSQL connection and frontend origin, and configure the frontend with the deployed backend /api URL.
@@ -404,17 +408,16 @@ CLIENT_URL=https://your-frontend-domain.example
 
 Frontend
 
-VITE_API_URL=https://your-backend-domain.example/api
+VITE_API_URL= https://fsd-4-real-time-chat-byte-de93.vercel.app
 
 After deployment, verify the health endpoint, registration, login, protected access, Socket.IO connection, two-user messaging, persistence, and chat history.
 
-Project Links
+## Project Links
 
-GitHub: https://github.com/ravindi5387/FSD_4_RealTimeChat_byte
-
-Live Frontend: Add after deployment
-
-Live Backend: Add after deployment
+- **GitHub:** https://github.com/ravindi5387/FSD_4_RealTimeChat_byte
+- **Live Frontend:** https://fsd-4-real-time-chat-byte-de93.vercel.app
+- **Live Backend:** https://fsd-4-real-time-chat-byte-497h.vercel.app
+- **Backend Health Check:** https://fsd-4-real-time-chat-byte-497h.vercel.app/api/health
 
 AVIP Task 4 Deliverables
 
@@ -438,7 +441,7 @@ AVIP Task 4 Deliverables
 
 ✅ Screenshot evidence
 
-⏳ Production deployment
+✅ Production deployment
 
 License
 

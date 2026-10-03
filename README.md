@@ -1,417 +1,116 @@
 PulseChat — Real-Time Chat Application
 
-Arithmatrix Virtual Internship Program (AVIP) 2026 — Full Stack Development — Task 4
+A secure, responsive real-time chat application developed for the Arithmatrix Virtual Internship Program (AVIP) 2026 — Full Stack Development, Task 4.
 
-A secure, responsive, real-time chat application built with React, TypeScript, Node.js, Express, Socket.IO, JWT authentication, bcryptjs, Zod, and PostgreSQL.
+PulseChat allows authenticated users to join chat rooms, exchange messages instantly, and retrieve persisted conversation history from PostgreSQL.
 
-PulseChat allows authenticated users to join chat rooms, exchange messages instantly, persist conversations in PostgreSQL, and reload message history across page refreshes.
-
-Project Status
-
-Area
-
-Status
-
-User authentication
-
-✅ Implemented
-
-JWT authentication
-
-✅ Implemented
-
-Password hashing
-
-✅ Implemented
-
-Chat rooms
-
-✅ Implemented
-
-Real-time messaging
-
-✅ Implemented
-
-Message persistence
-
-✅ Implemented
-
-Chat history
-
-✅ Implemented
-
-Sender identification
-
-✅ Implemented
-
-Presence / online count
-
-✅ Implemented
-
-Typing indicator
-
-✅ Implemented
-
-Unauthorized chat protection
-
-✅ Implemented
-
-Production deployment
-
-⏳ To be completed
-
-AVIP Task 4 Requirements
-
-The implementation addresses the required Task 4 capabilities:
-
-User authentication before joining chat
-
-Real-time text messaging between users within rooms
-
-Message persistence in a datastore
-
-Retrievable chat history with sender identification
-
-Basic multi-user room handling
-
-README documentation for REST APIs and Socket.IO events
-
-Screenshot / demo evidence
-
-These requirements are aligned with the AVIP 2026 Task 4 specification.
-
-Key Features
-
-Authentication & Security
+Features
 
 User registration and login
 
-Password hashing with bcryptjs
+bcrypt password hashing
 
-JWT-based authentication
+JWT authentication for protected access
 
-Protected REST endpoints
+Authenticated Socket.IO connections
 
-JWT validation during Socket.IO connection handshake
+Real-time room-based messaging
 
-Server-side request validation with Zod
+PostgreSQL message persistence
 
-CORS controlled through an environment variable
+Chat history after page refresh
 
-Parameterized PostgreSQL queries
+Sender names and timestamps
 
-Real-Time Communication
+Online-user presence count
 
-Socket.IO real-time communication
-
-Authenticated socket connections
-
-Room-based messaging
-
-Instant message broadcast to connected room members
-
-Online user count
-
-User join / leave notifications
+User join/leave notifications
 
 Typing indicators
 
-Automatic Socket.IO reconnection
+Server-side validation with Zod
 
-Persistence & History
+Responsive dark-theme UI
 
-Messages stored in PostgreSQL
-
-Sender information returned with message history
-
-Chat history retrieved through a protected REST endpoint
-
-Messages remain available after browser refresh
-
-User Experience
-
-Professional dark-theme interface
-
-Responsive layout for desktop and smaller screens
-
-Clear sent / received message styling
-
-Sender name and timestamp display
-
-Connection status indicator
-
-Empty-state chat experience
+Protected chat access for unauthenticated users
 
 Technology Stack
 
-Frontend
+Frontend: React, TypeScript, Vite, Socket.IO Client, Lucide React, custom responsive CSS
 
-React 19
+Backend: Node.js, Express, TypeScript, Socket.IO, JWT, bcryptjs, Zod, pg, dotenv
 
-TypeScript
+Database: PostgreSQL / Neon
 
-Vite
+Tools: Git, GitHub, Postman, Visual Studio Code, Browser DevTools
 
-Socket.IO Client
+Architecture
 
-Lucide React
-
-Custom responsive CSS
-
-Backend
-
-Node.js
-
-Express 5
-
-TypeScript
-
-Socket.IO 4
-
-JWT (jsonwebtoken)
-
-bcryptjs
-
-Zod
-
-PostgreSQL client (pg)
-
-dotenv
-
-Database
-
-PostgreSQL
-
-Neon PostgreSQL compatible configuration
-
-Development & Testing
-
-Visual Studio Code
-
-Postman
-
-Git
-
-GitHub
-
-Browser DevTools
-
-System Architecture
-
-┌──────────────────────────────────────┐
-│ React + TypeScript + Vite │
-│ PulseChat UI │
-└───────────────────┬──────────────────┘
-│
-HTTP REST API
-│
-│ Socket.IO
-│ │
-▼ ▼
-┌──────────────────────────┐
-│ Node.js + Express + TS │
-│ │
-│ JWT Authentication │
-│ Zod Validation │
-│ Socket.IO Server │
-└────────────┬─────────────┘
-│
-▼
-┌────────────────────┐
-│ PostgreSQL / Neon │
-│ │
-│ users │
-│ chat_rooms │
-│ chat_messages │
-└────────────────────┘
-
-Application Flow
-
-Register
-↓
-Password hashed with bcryptjs
-↓
-User stored in PostgreSQL
-↓
-Login
-↓
-JWT issued
-↓
-Authenticated chat session
-↓
-Connect to Socket.IO
-↓
-Join chat room
-↓
-Send message
-↓
-Validate message
-↓
-Store message in PostgreSQL
-↓
-Broadcast message to room
-↓
-Connected users receive message instantly
+┌─────────────────────────────────────┐
+│        React + TypeScript + Vite    │
+│             PulseChat UI            │
+└──────────────────┬──────────────────┘
+                   │
+          HTTP REST API + Socket.IO
+                   │
+                   ▼
+┌─────────────────────────────────────┐
+│       Node.js + Express + TS        │
+│  JWT Auth · Zod Validation · Socket │
+│              .IO Server              │
+└──────────────────┬──────────────────┘
+                   │
+                   ▼
+┌─────────────────────────────────────┐
+│           PostgreSQL / Neon         │
+│  users · chat_rooms · chat_messages│
+└─────────────────────────────────────┘
 
 Project Structure
 
 FSD_4_RealTimeChat_byte/
-│
 ├── backend/
-│ ├── src/
-│ │ ├── config/
-│ │ │ ├── db.ts
-│ │ │ └── env.ts
-│ │ ├── controllers/
-│ │ │ ├── authController.ts
-│ │ │ └── chatController.ts
-│ │ ├── middleware/
-│ │ │ └── authMiddleware.ts
-│ │ ├── routes/
-│ │ │ ├── authRoutes.ts
-│ │ │ └── chatRoutes.ts
-│ │ ├── sockets/
-│ │ │ └── chatSocket.ts
-│ │ ├── types/
-│ │ │ ├── auth.ts
-│ │ │ └── chat.ts
-│ │ ├── utils/
-│ │ │ └── jwt.ts
-│ │ ├── app.ts
-│ │ └── server.ts
-│ ├── .env.example
-│ ├── package.json
-│ └── tsconfig.json
-│
+│   ├── src/
+│   │   ├── config/
+│   │   ├── controllers/
+│   │   ├── middleware/
+│   │   ├── routes/
+│   │   ├── sockets/
+│   │   ├── types/
+│   │   ├── utils/
+│   │   ├── app.ts
+│   │   └── server.ts
+│   ├── .env.example
+│   └── package.json
 ├── frontend/
-│ ├── src/
-│ │ ├── components/
-│ │ │ ├── AuthShell.tsx
-│ │ │ ├── ChatHeader.tsx
-│ │ │ ├── ChatSidebar.tsx
-│ │ │ ├── MessageBubble.tsx
-│ │ │ └── MessageComposer.tsx
-│ │ ├── pages/
-│ │ │ ├── AuthPage.tsx
-│ │ │ └── ChatPage.tsx
-│ │ ├── services/
-│ │ │ └── api.ts
-│ │ ├── types/
-│ │ │ └── index.ts
-│ │ ├── App.tsx
-│ │ ├── main.tsx
-│ │ └── styles.css
-│ ├── .env.example
-│ ├── index.html
-│ ├── package.json
-│ ├── tsconfig.json
-│ └── vite.config.ts
-│
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   ├── types/
+│   │   ├── App.tsx
+│   │   └── styles.css
+│   ├── .env.example
+│   └── package.json
 ├── database/
-│ └── schema.sql
-│
+│   └── schema.sql
 ├── docs/
-│ └── TEST_PLAN.md
-│
+│   └── TEST_PLAN.md
 ├── screenshots/
 ├── .gitignore
-├── README.md
-└── START_HERE_SINHALA.txt
+└── README.md
 
-Database Design
+Database
 
-users
+The PostgreSQL schema contains three core tables:
 
-Stores authenticated application users.
+users — authenticated application users
 
-Column
+chat_rooms — available chat rooms
 
-Description
+chat_messages — persistent messages linked to users and rooms
 
-id
-
-Primary key
-
-name
-
-User display name
-
-email
-
-Unique login email
-
-password_hash
-
-bcrypt password hash
-
-created_at
-
-Account creation timestamp
-
-chat_rooms
-
-Stores available chat rooms.
-
-Column
-
-Description
-
-id
-
-Primary key
-
-name
-
-Unique room name
-
-description
-
-Room description
-
-created_at
-
-Room creation timestamp
-
-chat_messages
-
-Stores persistent chat messages.
-
-Column
-
-Description
-
-id
-
-Message primary key
-
-room_id
-
-Foreign key to chat_rooms
-
-sender_id
-
-Foreign key to users
-
-message
-
-Message content, max 1000 characters
-
-created_at
-
-Message timestamp
-
-Relationships
-
-users
-│
-└──────────────┐
-▼
-chat_messages
-▲
-│
-chat_rooms
-
-The database schema also seeds the default rooms:
+Default rooms:
 
 General
 
@@ -419,37 +118,39 @@ Developers
 
 Announcements
 
+Run database/schema.sql against your PostgreSQL or Neon database before starting the application.
+
 Local Setup
 
 Prerequisites
 
-Node.js 20+
+Node.js
 
 npm
 
-PostgreSQL or a Neon PostgreSQL database
+PostgreSQL or Neon
 
 Git
 
 1. Clone the repository
 
-git clone <YOUR_GITHUB_REPOSITORY_URL>
+git clone https://github.com/ravindi5387/FSD_4_RealTimeChat_byte.git
 cd FSD_4_RealTimeChat_byte
 
 2. Configure the database
 
-Run the SQL script in:
+Run:
 
 database/schema.sql
 
-against your PostgreSQL / Neon database.
+against your PostgreSQL/Neon database.
 
 3. Configure the backend
 
 cd backend
 npm install
 
-Create a .env file from .env.example:
+Create backend/.env from .env.example:
 
 PORT=5000
 DATABASE_URL=your-postgresql-connection-string
@@ -457,20 +158,29 @@ JWT_SECRET=your-long-random-secret
 JWT_EXPIRES_IN=1h
 CLIENT_URL=http://localhost:5174
 
-Set CLIENT_URL to the exact local frontend origin used by Vite. For example, if Vite is running on 5174, use http://localhost:5174.
-
 Start the backend:
 
 npm run dev
 
+Health check:
+
+http://localhost:5000/api/health
+
+Expected response:
+
+{
+  "status": "ok",
+  "service": "realtime-chat-api"
+}
+
 4. Configure the frontend
 
-In a second terminal:
+Open a second terminal:
 
 cd frontend
 npm install
 
-Create .env from .env.example:
+Create frontend/.env:
 
 VITE_API_URL=http://localhost:5000/api
 
@@ -478,27 +188,9 @@ Start the frontend:
 
 npm run dev
 
-Open the URL printed by Vite, for example:
+Open the Vite URL shown in the terminal.
 
-http://localhost:5174
-
-Build Commands
-
-Backend
-
-cd backend
-npm run build
-npm start
-
-Frontend
-
-cd frontend
-npm run build
-npm run preview
-
-REST API
-
-All chat REST endpoints except health and authentication are protected by a Bearer JWT.
+API
 
 Method
 
@@ -506,31 +198,31 @@ Endpoint
 
 Auth
 
-Description
+Purpose
 
 GET
 
 /api/health
 
-No
+None
 
-API health check
+Health check
 
 POST
 
 /api/auth/register
 
-No
+None
 
-Create a new user
+Register a user
 
 POST
 
 /api/auth/login
 
-No
+None
 
-Authenticate and receive JWT
+Login and receive JWT
 
 GET
 
@@ -538,7 +230,7 @@ GET
 
 Bearer JWT
 
-Get the current authenticated user
+Current authenticated user
 
 GET
 
@@ -546,7 +238,7 @@ GET
 
 Bearer JWT
 
-Retrieve available chat rooms
+List chat rooms
 
 GET
 
@@ -554,88 +246,22 @@ GET
 
 Bearer JWT
 
-Retrieve chat history for a room
-
-Health Check
-
-GET /api/health
-
-Example response:
-
-{
-"status": "ok",
-"service": "realtime-chat-api"
-}
+Retrieve room history
 
 Register
 
-POST /api/auth/register
-Content-Type: application/json
-
 {
-"name": "Ravindi Test",
-"email": "ravindi@example.com",
-"password": "StrongPass123"
+  "name": "Ravindi Test",
+  "email": "ravindi@example.com",
+  "password": "StrongPass123"
 }
 
 Login
 
-POST /api/auth/login
-Content-Type: application/json
-
 {
-"email": "ravindi@example.com",
-"password": "StrongPass123"
+  "email": "ravindi@example.com",
+  "password": "StrongPass123"
 }
-
-Protected User Endpoint
-
-GET /api/auth/me
-Authorization: Bearer <JWT_TOKEN>
-
-Chat Rooms
-
-GET /api/chat/rooms
-Authorization: Bearer <JWT_TOKEN>
-
-Chat History
-
-GET /api/chat/rooms/1/messages
-Authorization: Bearer <JWT_TOKEN>
-
-HTTP Status Codes
-
-Status
-
-Usage
-
-200 OK
-
-Successful login, protected reads, and health check
-
-201 Created
-
-Successful registration
-
-400 Bad Request
-
-Invalid or missing input
-
-401 Unauthorized
-
-Missing, invalid, or expired authentication
-
-404 Not Found
-
-Unknown route or room
-
-409 Conflict
-
-Duplicate email during registration
-
-500 Internal Server Error
-
-Unexpected server/database error
 
 Socket.IO Events
 
@@ -645,242 +271,135 @@ Event
 
 Payload
 
-Description
+Purpose
 
 join_room
 
 { roomId }
 
-Join a valid chat room
+Join a chat room
 
 send_message
 
 { roomId, message }
 
-Validate, persist, and broadcast a message
+Validate, persist and broadcast
 
 typing_start
 
 { roomId }
 
-Notify room members that the user is typing
+Start typing indicator
 
 typing_stop
 
 { roomId }
 
-Stop the typing indicator
+Stop typing indicator
 
 leave_room
 
 { roomId }
 
-Leave a chat room
+Leave the room
 
 Server → Client
 
 Event
 
-Payload / Data
-
-Description
+Purpose
 
 connected
-
-{ userId, message }
 
 Confirms authenticated socket connection
 
 receive_message
 
-Message object
-
-Delivers a persisted message to room members
+Delivers a persisted message
 
 presence_update
 
-{ roomId, onlineCount }
-
-Updates room presence count
+Updates room online count
 
 user_joined
-
-User and room data
 
 Announces a new room member
 
 user_left
 
-User and room data
-
-Announces when a user leaves
+Announces a departing member
 
 typing_start
 
-User and room data
-
-Displays typing activity
+Shows typing activity
 
 typing_stop
 
-User and room data
-
 Removes typing activity
 
-Socket Authentication
+Authentication & Real-Time Flow
 
-The frontend sends the JWT token during the Socket.IO handshake:
+Register → bcrypt hash → PostgreSQL
+        ↓
+Login → JWT issued
+        ↓
+Authenticated Socket.IO connection
+        ↓
+Join room
+        ↓
+Send message
+        ↓
+Validate → Save to PostgreSQL → Broadcast
+        ↓
+Connected users receive the message instantly
 
-io(SOCKET_URL, {
-auth: {
-token
-},
-transports: ['websocket', 'polling'],
-reconnection: true
-});
+Security
 
-The server validates the token before accepting the connection. Invalid, missing, or expired tokens are rejected.
+Passwords are stored only as bcrypt hashes.
 
-Real-Time Messaging Flow
+JWT protects authenticated REST endpoints and Socket.IO connections.
 
-User logs in
-↓
-JWT token issued
-↓
-Frontend opens authenticated Socket.IO connection
-↓
-User joins a room
-↓
-User sends a message
-↓
-Zod validates room ID + message content
-↓
-Message is inserted into PostgreSQL
-↓
-Server emits receive_message to the room
-↓
-Connected room members receive the message instantly
+Zod performs server-side validation.
 
-Persistence & History Flow
+Message content is limited to 1–1000 characters.
 
-User opens room
-↓
-GET /api/chat/rooms/:roomId/messages
-↓
-Protected API validates JWT
-↓
-PostgreSQL retrieves room messages
-↓
-Messages returned with sender name + timestamp
-↓
-Frontend renders chat history
-
-Multi-User Handling
-
-The application supports basic concurrent room usage through Socket.IO rooms.
-
-When users join a room, the server:
-
-Adds the socket to the room.
-
-Notifies existing room members.
-
-Calculates connected sockets for the room.
-
-Broadcasts the current online count.
-
-Delivers persisted messages to all connected room members.
-
-This provides the basic simultaneous-user behavior required for the internship task.
-
-Security Measures
-
-Passwords are never stored as plaintext; they are hashed with bcryptjs.
-
-JWTs protect authenticated REST endpoints.
-
-JWTs are validated before accepting Socket.IO connections.
-
-Zod performs server-side input validation.
-
-Chat messages are trimmed and limited to 1–1000 characters.
-
-Room IDs are validated as positive integers.
+Room IDs are validated.
 
 SQL queries use parameterized values.
 
-CORS is configured from CLIENT_URL.
+CORS is controlled through CLIENT_URL.
 
-Database credentials and JWT secrets are loaded from environment variables.
+Sensitive credentials are stored in environment variables.
 
 .env files are excluded from version control.
 
-Security Note
+Security: Never commit real DATABASE_URL values, database passwords, JWT secrets, or other credentials. Use .env.example for safe placeholders only.
 
-Never commit real values for:
+Testing
 
-DATABASE_URL
-JWT_SECRET
+The application has been tested for:
 
-Use .env.example only for safe placeholders.
+✅ Registration
 
-Testing Checklist
+✅ Login and JWT authentication
 
-The following local tests have been performed during development:
+✅ Protected chat access
 
-Registration succeeds with valid input
+✅ Two-user communication in the same room
 
-Login succeeds and returns a JWT
+✅ Real-time message delivery without refresh
 
-Chat access requires authentication
+✅ Sender identification
 
-Two authenticated users can enter the same room
+✅ Online-user presence
 
-Real-time messages are delivered without page refresh
+✅ Message persistence in PostgreSQL
 
-Sender names are displayed
+✅ Chat history after refresh
 
-Online user count updates
+✅ Unauthorized chat access
 
-Chat history remains available after refresh
-
-Messages are stored in PostgreSQL
-
-Invalid chat access redirects the user to authentication
-
-Invalid message input is validated
-
-Demo Evidence / Screenshots
-
-Store demonstration images in:
-
-screenshots/
-
-Recommended evidence set:
-
-Login page
-
-Registration page
-
-Authenticated chat workspace
-
-Two-user real-time messaging
-
-Sent message
-
-Received message
-
-Chat history after refresh
-
-PostgreSQL stored messages
-
-Unauthorized chat access
-
-API testing
-
-Screenshot Gallery
-
-Rename the local evidence files to the names below before publishing the README so the links resolve correctly on GitHub.
+✅ Input validation
 
 ## Screenshots / Demo Evidence
 
@@ -926,113 +445,52 @@ Rename the local evidence files to the names below before publishing the README 
 
 Deployment
 
-The production deployment is intentionally kept as a separate configuration step after local functional testing.
+For production deployment, configure the backend with the production PostgreSQL connection and frontend origin, and configure the frontend with the deployed backend /api URL.
 
-Backend Production Variables
+Backend
 
-PORT=5000
-DATABASE_URL=postgresql://neondb_owner:npg_ZoH8pTmXK2CA@ep-quiet-feather-b4eitoyw-pooler.c-6.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require
-JWT_SECRET=cff802229122aea4c48a230ff7048d9d5427240970a4ce0dd7e4177531003a98
+DATABASE_URL=your-production-postgresql-connection-string
+JWT_SECRET=your-production-jwt-secret
 JWT_EXPIRES_IN=1h
-CLIENT_URL=http://localhost:5173
+CLIENT_URL=https://your-frontend-domain.example
 
-Frontend Production Variable
+Frontend
 
 VITE_API_URL=https://your-backend-domain.example/api
 
-Post-Deployment Verification
+After deployment, verify the health endpoint, registration, login, protected access, Socket.IO connection, two-user messaging, persistence, and chat history.
 
-After deployment, verify the following in order:
+Project Links
 
-GET /api/health
+GitHub: https://github.com/ravindi5387/FSD_4_RealTimeChat_byte
 
-User registration
+Live Frontend: Add after deployment
 
-User login
+Live Backend: Add after deployment
 
-Protected /api/auth/me
+AVIP Task 4 Deliverables
 
-Chat room loading
+✅ Public GitHub repository
 
-Authenticated Socket.IO connection
+✅ Authentication before chat access
 
-Two-user real-time messaging
+✅ Real-time messaging
 
-Message persistence
+✅ PostgreSQL message persistence
 
-Chat history after refresh
+✅ Retrievable chat history
 
-Use a hosting platform that supports the Socket.IO / WebSocket behavior required by the application. Confirm the provider's current runtime limitations before production deployment.
+✅ Sender identification
 
-Project URLs
+✅ Multi-user room testing
 
-Live Frontend
+✅ REST API documentation
 
-Pending deployment
+✅ Socket.IO event documentation
 
-Live Backend
+✅ Screenshot evidence
 
-Pending deployment
-
-GitHub Repository
-
-Pending repository publication
-
-AVIP Deliverables Checklist
-
-Task 4 requirements implemented
-
-Public-ready project structure
-
-REST API documentation
-
-Socket.IO event documentation
-
-Authentication before chat access
-
-Real-time messaging
-
-PostgreSQL message persistence
-
-Chat history
-
-Sender identification
-
-Multi-user room testing
-
-Screenshot evidence prepared
-
-GitHub repository published
-
-Production deployment completed
-
-Live URL added to README
-
-AVIP dashboard submission completed
-
-Learning Outcomes Demonstrated
-
-This project demonstrates practical experience with:
-
-Full-stack application architecture
-
-REST API development
-
-JWT authentication
-
-Password hashing
-
-WebSocket-based real-time communication
-
-PostgreSQL data persistence
-
-Server-side validation
-
-Responsive UI development
-
-Multi-user communication flows
-
-Debugging and deployment preparation
+⏳ Production deployment
 
 License
 

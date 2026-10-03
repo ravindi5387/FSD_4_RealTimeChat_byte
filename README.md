@@ -404,7 +404,7 @@ Backend
 DATABASE_URL=your-production-postgresql-connection-string
 JWT_SECRET=your-production-jwt-secret
 JWT_EXPIRES_IN=1h
-CLIENT_URL=https://your-frontend-domain.example
+CLIENT_URL=CLIENT_URL=VITE_API_URL=https://fsd-4-real-time-chat-byte-497h.vercel.app/api
 
 Frontend
 

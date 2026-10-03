@@ -3,7 +3,3 @@ export interface AuthUser {
   name: string;
   email: string;
 }
-
-export interface AuthenticatedRequest extends Express.Request {
-  user?: AuthUser;
-}

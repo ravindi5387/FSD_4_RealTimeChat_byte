@@ -1,0 +1,23 @@
+{
+  "name": "realtime-chat-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Professional React frontend for AVIP 2026 Task 4.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "lucide-react": "^0.468.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "socket.io-client": "^4.8.1",
+    "vite": "latest"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.2"
+  }
+}

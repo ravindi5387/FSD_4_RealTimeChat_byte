@@ -1,0 +1,105 @@
+FSD Task 4 — Real-Time Chat Application
+========================================
+
+මේ ZIP එක Task 4 සඳහා ready-to-start full-stack project එකක්.
+
+Tech Stack
+----------
+Frontend: React + TypeScript + Vite + Socket.IO Client
+Backend: Node.js + Express + TypeScript + Socket.IO
+Database: PostgreSQL / Neon
+Auth: JWT + bcryptjs
+Validation: Zod
+
+1. Project එක unzip කරන්න
+-------------------------
+උදා:
+D:\FSD_4_RealTimeChat_byte
+
+2. Database setup
+-----------------
+PostgreSQL හෝ Neon SQL Editor එක open කරලා:
+
+database/schema.sql
+
+file එකේ SQL එක run කරන්න.
+
+Task 1 Neon database එක reuse කරනවා නම් existing users table එක තබාගෙන chat_rooms සහ chat_messages tables create වෙන විදිහට schema එක designed කරලා තියෙනවා.
+
+3. Backend .env
+---------------
+backend\.env.example copy කරලා backend\.env නමින් save කරන්න.
+
+උදාහරණය:
+PORT=5000
+DATABASE_URL=your-postgresql-connection-string
+JWT_SECRET=your-long-random-secret
+JWT_EXPIRES_IN=1h
+CLIENT_URL=http://localhost:5173
+
+වැදගත්: .env file එක GitHub එකට push කරන්න එපා.
+
+4. Backend run කරන්න
+---------------------
+Terminal:
+cd backend
+npm install
+npm run dev
+
+Backend:
+http://localhost:5000
+
+Health:
+http://localhost:5000/api/health
+
+5. Frontend run කරන්න
+----------------------
+අලුත් terminal එකක්:
+cd frontend
+npm install
+npm run dev
+
+Vite URL එක browser එකේ open කරන්න.
+
+6. Test flow
+-------------
+Register → Login → Chat room → Send message
+
+Real-time test එකට browser windows 2ක් open කරලා users 2කින් same room එකට login වෙන්න.
+Browser A එකෙන් message යවලා Browser B එකට page refresh නොකර message ලැබෙනවාද බලන්න.
+
+7. Evidence screenshots
+-----------------------
+අවසානයේ screenshots/ folder එකට මේ වගේ evidence ගන්න:
+01-registration.png
+02-login-success.png
+03-authenticated-chat.png
+04-message-sent.png
+05-message-received.png
+06-chat-history.png
+07-multiple-users.png
+08-unauthorized-access.png
+09-database-messages.png
+10-api-tests.png
+
+8. GitHub
+---------
+Repository name:
+FSD_4_RealTimeChat_byte
+
+Public repository එකක් කරන්න.
+
+9. Deployment
+-------------
+Real-time Socket.IO backend එක සඳහා persistent WebSocket/Socket.IO connections support කරන server host එකක් භාවිතා කරන්න.
+Frontend එකට production VITE_API_URL එක set කරන්න.
+
+10. AVIP Task 4 requirements
+----------------------------
+[✓] Authentication before joining chat
+[✓] Real-time text messaging
+[✓] Message persistence
+[✓] Chat history + sender identification
+[✓] Basic simultaneous-user handling
+[✓] README with REST endpoints/events
+[✓] Screenshot/demo structure

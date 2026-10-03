@@ -13,4 +13,4 @@ const io = new Server(server, {
 
 registerChatSocket(io);
 
-export default server;
+export { default } from "./app";

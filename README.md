@@ -415,7 +415,7 @@ After deployment, verify the health endpoint, registration, login, protected acc
 ## Project Links
 
 - **GitHub:** https://github.com/ravindi5387/FSD_4_RealTimeChat_byte
-- **Live Frontend:** https://fsd-4-real-time-chat-byte-de93.vercel.app
+- **Live Frontend:** https://fsd-4-real-time-chat-byte-yulc.vercel.app/
 - **Live Backend:** https://fsd-4-real-time-chat-byte-497h.vercel.app
 - **Backend Health Check:** https://fsd-4-real-time-chat-byte-497h.vercel.app/api/health
 
